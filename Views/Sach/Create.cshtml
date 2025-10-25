@@ -1,0 +1,53 @@
+﻿@model BTH8_BT2.Models.SACH
+@{
+    ViewBag.Title = "Thêm sách mới";
+}
+
+<h2>Thêm sách mới</h2>
+
+@using (Html.BeginForm("Create", "Sach", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <label>Tên sách</label><br />
+        @Html.TextBoxFor(m => m.TENSACH, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <div>
+        <label>Giá bán</label><br />
+        @Html.TextBoxFor(m => m.GIABAN, new { @class = "form-control", type = "number", step = "0.1" })
+    </div>
+    <br />
+
+    <div>
+        <label>Mô tả</label><br />
+        @Html.TextAreaFor(m => m.MOTA, new { @class = "form-control", rows = 4 })
+    </div>
+    <br />
+
+    <div>
+        <label>Ảnh bìa</label><br />
+        <input type="file" name="AnhUpload" />
+    </div>
+    <br />
+
+    <div>
+        <label>Ngày xuất bản</label><br />
+        @Html.TextBoxFor(m => m.NGAYCAPNHAT, new { @class = "form-control", type = "date" })
+    </div>
+    <br />
+
+    <div>
+        <label>Số lượng tồn</label><br />
+        @Html.TextBoxFor(m => m.SOLUONGTON, new { @class = "form-control", type = "number" })
+    </div>
+    <br />
+
+    <div>
+        <label>Mã chủ đề</label><br />
+        @Html.DropDownList("MaCD", null, "--Chọn chủ đề--", new { @class = "form-control" })
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary">Thêm mới</button>
+}

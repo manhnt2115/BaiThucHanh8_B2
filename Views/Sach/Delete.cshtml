@@ -1,0 +1,32 @@
+﻿@model BTH8_BT2.Models.SACH
+@{
+    ViewBag.Title = "Xóa sách";
+}
+
+<h2>Xác nhận xóa sách</h2>
+
+<h4>Bạn có chắc chắn muốn xóa sách này?</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>Tên sách</dt>
+    <dd>@Model.TENSACH</dd>
+
+    <dt>Giá bán</dt>
+    <dd>@Model.GIABAN</dd>
+
+    <dt>Mô tả</dt>
+    <dd>@Model.MOTA</dd>
+
+    <dt>Ngày xuất bản</dt>
+    <dd>@Model.NGAYCAPNHAT?.ToString("dd/MM/yyyy")</dd>
+
+    <dt>Số lượng tồn</dt>
+    <dd>@Model.SOLUONGTON</dd>
+</dl>
+
+@using (Html.BeginForm("DeleteConfirmed", "Sach", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.MASACH)
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+}

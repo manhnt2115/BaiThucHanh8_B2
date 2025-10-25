@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BTH8_BT2.Models.SACH>
+
+@{
+    ViewBag.Title = "Danh sách hàng hóa";
+}
+
+<h2>Danh sách hàng hóa</h2>
+
+<p>
+    @Html.ActionLink("➕ Thêm mới hàng hóa", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Tên sách</th>
+        <th>Giá bán</th>
+        <th>Mô tả</th>
+        <th>Ảnh bìa</th>
+        <th>Ngày xuất bản</th>
+        <th>Số lượng tồn</th>
+        <th>Chủ đề</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TENSACH</td>
+            <td>@item.GIABAN</td>
+            <td>@item.MOTA</td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.ANHBIA))
+                {
+                    <img src="@Url.Content("~/Images/" + item.ANHBIA)" width="80" />
+                }
+            </td>
+            <td>@(item.NGAYCAPNHAT.HasValue ? item.NGAYCAPNHAT.Value.ToString("dd/MM/yyyy") : "")</td>
+            <td>@item.SOLUONGTON</td>
+            <td>@item.CHUDE?.TenChuDe</td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MASACH }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.MASACH }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MASACH })
+            </td>
+        </tr>
+    }
+</table>

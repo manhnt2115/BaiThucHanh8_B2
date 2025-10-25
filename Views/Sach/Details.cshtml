@@ -1,0 +1,31 @@
+﻿@model BTH8_BT2.Models.SACH
+
+@{
+    ViewBag.Title = "Thông tin chi tiết sách";
+}
+
+<h2>Thông tin chi tiết sách</h2>
+
+<div style="border:1px solid #ccc; padding:15px; width:400px;">
+    <p><strong>Tên sách:</strong> @Model.TENSACH</p>
+    <p><strong>Giá bán:</strong> @String.Format("{0:0,0} VNĐ", Model.GIABAN)</p>
+    <p><strong>Mô tả:</strong> @Model.MOTA</p>
+    <p><strong>Ngày xuất bản:</strong> @Model.NGAYCAPNHAT?.ToString("dd/MM/yyyy")</p>
+    <p><strong>Số lượng tồn:</strong> @Model.SOLUONGTON</p>
+    <p><strong>Chủ đề:</strong> @Model.CHUDE?.TenChuDe</p>
+
+    <p>
+        <strong>Ảnh bìa:</strong><br />
+        @if (!string.IsNullOrEmpty(Model.ANHBIA))
+        {
+            <img src="@Url.Content("~/Images/" + Model.ANHBIA)" width="150" height="200" />
+        }
+        else
+        {
+            <span>Không có ảnh</span>
+        }
+    </p>
+
+    <br />
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+</div>
